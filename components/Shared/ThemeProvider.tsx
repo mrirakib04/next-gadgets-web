@@ -13,13 +13,11 @@ export default function ThemeProvider({
   const theme = useSelector((state: RootState) => state.theme.mode);
 
   useEffect(() => {
-    // লোকাল স্টোরেজ থেকে থিম রিড করা
     const savedTheme = localStorage.getItem("theme") || "light";
     dispatch(setTheme(savedTheme));
   }, [dispatch]);
 
   useEffect(() => {
-    // HTML বা Body-তে ক্লাস যোগ করা
     const root = window.document.documentElement;
     root.classList.remove("light", "dark");
     root.classList.add(theme);

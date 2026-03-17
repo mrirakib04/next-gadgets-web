@@ -2,13 +2,13 @@ import Link from "next/link";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-(--bg-primary) text-(--text-main) transition-colors duration-300">
+    <section className="relative min-h-[85vh] container  px-4 flex items-center overflow-hidden bg-(--bg-primary) text-(--text-main) transition-colors duration-300 py-10">
       {/* Background Decorative Element */}
       <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-125 h-125 bg-brand/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 md:gap-12 gap-6 items-center relative z-10">
+      <div className="w-full grid grid-cols-1 lg:grid-cols-2 md:gap-12 gap-6 items-center relative z-10">
         {/* Left Side: Content */}
-        <div className="space-y-6 md:space-y-8 text-center lg:text-left pt-10 lg:pt-0">
+        <div className="space-y-6 md:space-y-8 text-center lg:text-left lg:pt-0">
           <div className="inline-block px-3 py-1 md:px-4 md:py-1 rounded-full border border-brand/30 bg-brand/10 text-brand text-[10px] md:text-sm font-bold uppercase tracking-widest animate-pulse">
             New Arrival 2026
           </div>
@@ -72,7 +72,7 @@ const HeroSection = () => {
             {/* Product Image Container */}
             <div className="relative z-10 w-[85%] h-[85%] transition-all duration-700 group-hover:scale-110 group-hover:-rotate-3">
               <img
-                src="https://i.ibb.co/PZvmX0W5/g1.png"
+                src="https://i.ibb.co/hRzx6Gcc/g7.webp"
                 alt="Featured Product"
                 className="w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(255,140,0,0.3)]"
               />

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTheme } from "@/store/slices/themeSlice";
@@ -29,6 +29,7 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "All Products", path: "/all-products" },
+    { name: "Track Order", path: "/track-order" },
     { name: "About", path: "/about" },
   ];
 
@@ -36,41 +37,43 @@ const Navbar = () => {
     <nav
       className={`fixed w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-md py-2"
-          : "bg-white dark:bg-black py-4"
-      }`}
+          ? "bg-[--bg-primary]/80 backdrop-blur-md shadow-md py-2"
+          : "bg-[--bg-primary] py-4"
+      } text-[--text-main]`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
-        {/* Logo (10% Black/White context) */}
+        {/* Logo Section */}
         <Link
           href="/"
-          className="text-2xl font-bold tracking-tighter text-black dark:text-white flex items-center"
+          className="text-2xl font-bold tracking-tighter flex items-center text-(--text-main)"
         >
-          N<span className="sm:flex hidden">EXT</span>
-          <span className="text-[#ff8c00] flex items-center">
-            G<span className="sm:flex hidden">ADGETS</span>
+          <span>N</span>
+          <span className="sm:inline hidden">EXT</span>
+          <span className="text-brand flex items-center">
+            <span>G</span>
+            <span className="sm:inline hidden">ADGETS</span>
           </span>
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden lg:flex items-center space-x-8">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.path}
-              className="font-medium hover:text-[#ff8c00] transition-colors text-black dark:text-white"
+              className="font-medium transition-colors hover:text-brand"
             >
               {link.name}
             </Link>
           ))}
         </div>
 
-        {/* Icons (Cart, Wishlist, Theme, Login) */}
+        {/* Icons & Actions */}
         <div className="flex items-center space-x-5">
           {/* Wishlist */}
           <Link
             href="/wishlist"
-            className="hidden sm:block text-xl hover:text-[#ff8c00] text-black dark:text-white"
+            className="hidden sm:block text-xl transition-colors hover:text-brand"
           >
             <HiOutlineHeart />
           </Link>
@@ -78,18 +81,18 @@ const Navbar = () => {
           {/* Cart */}
           <Link
             href="/cart"
-            className="text-xl hover:text-[#ff8c00] relative text-black dark:text-white"
+            className="text-xl relative transition-colors hover:text-brand"
           >
             <HiOutlineShoppingCart />
-            <span className="absolute -top-2 -right-2 bg-[#ff8c00] text-white text-[10px] rounded-full h-4 w-4 flex items-center justify-center">
+            <span className="absolute -top-2 -right-2 bg-brand text-white text-[10px] rounded-full h-4 w-4 flex items-center justify-center">
               0
             </span>
           </Link>
 
-          {/* Theme Toggler (Orange highlight) */}
+          {/* Theme Toggler */}
           <button
             onClick={() => dispatch(toggleTheme())}
-            className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-[#ff8c00] transition-all hover:scale-110"
+            className="p-2 cursor-pointer rounded-full transition-all hover:scale-110 bg-gray-100 dark:bg-gray-800 text-brand"
           >
             {theme === "dark" ? (
               <HiOutlineSun size={20} />
@@ -98,17 +101,17 @@ const Navbar = () => {
             )}
           </button>
 
-          {/* Login Btn (30% Orange) */}
+          {/* Login Button */}
           <Link
             href="/login"
-            className="hidden md:block bg-[#ff8c00] text-white px-6 py-2 rounded-full font-semibold hover:bg-orange-600 transition-all"
+            className="hidden md:block px-6 py-2 rounded-full font-semibold transition-all bg-brand text-white hover:opacity-90"
           >
             Login
           </Link>
 
-          {/* Mobile Menu Btn */}
+          {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-2xl text-black dark:text-white"
+            className="lg:hidden text-2xl"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <HiOutlineX /> : <HiOutlineMenuAlt3 />}
@@ -116,14 +119,14 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Dropdown */}
       {isOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-white dark:bg-black border-t border-gray-200 dark:border-gray-800 py-5 px-4 space-y-4 shadow-xl">
+        <div className="lg:hidden absolute top-full left-0 w-full shadow-xl py-5 px-4 space-y-4 bg-(--bg-primary) border-t border-gray-200 dark:border-gray-800">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.path}
-              className="block text-lg font-medium text-black dark:text-white"
+              className="block text-lg font-medium hover:text-brand"
               onClick={() => setIsOpen(false)}
             >
               {link.name}
@@ -131,7 +134,7 @@ const Navbar = () => {
           ))}
           <Link
             href="/login"
-            className="block w-full text-center bg-[#ff8c00] text-white py-3 rounded-xl font-bold"
+            className="block w-full text-center py-3 rounded-xl font-bold bg-brand text-white"
             onClick={() => setIsOpen(false)}
           >
             Login

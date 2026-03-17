@@ -7,7 +7,7 @@
 }
 
 .dark {
-  --bg-primary: #000000; /* 60% */
+  --bg-primary: #0a0a0a; /* 60% */
   --text-main: #ffffff; /* 10% */
   --brand: #ff8c00; /* 30% */
 }
